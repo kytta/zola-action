@@ -1,0 +1,42 @@
+on:
+  - push
+  - pull_request
+
+jobs:
+  test-action:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    name: Test the Zola build action
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build default
+        uses: ./
+        working-directory: ./test
+      - name: Test default
+        run: test -e test/public/index.html
+
+      - name: Build explicit output dir
+        uses: ./
+        working-directory: ./test
+        with:
+          output: ./_site
+      - name: Test explicit output dir
+        run: test -e test/_site/index.html
+
+      - name: Build with drafts
+        uses: ./
+        working-directory: ./test
+        with:
+          drafts: true
+      - name: Test drafts
+        run: test -e test/public/blog/one-draft/index.html
+
+      - name: Build with explicit base URL
+        uses: ./
+        working-directory: ./test
+        with:
+          baseUrl: "https://website.invalid"
+      - name: Test explicit base URL
+        run: grep "https://website.invalid" test/public/robots.txt
