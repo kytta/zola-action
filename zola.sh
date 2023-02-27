@@ -15,5 +15,4 @@ if [ "${INPUT_DRAFTS}" = true ]; then
 fi
 
 # Build
-cd "${INPUT_ROOT}"
-eval zola build "${DRAFTS_FLAG}" "${BASEURL_OPTION}" --output-dir "${INPUT_OUTPUT}"
+eval zola --root "${INPUT_ROOT}" build "${DRAFTS_FLAG}" "${BASEURL_OPTION}" --output-dir "${INPUT_OUTPUT}"
