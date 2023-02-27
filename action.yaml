@@ -8,6 +8,10 @@ inputs:
     description: "Directory where the source files reside."
     required: false
     default: "."
+  config:
+    description: "Path to a config file in the root of project."
+    required: false
+    default: "config.toml"
   base-url:
     description: "Force the base URL to be that value."
     required: false
@@ -37,6 +41,7 @@ runs:
       env:
         # https://github.com/actions/runner/issues/665
         INPUT_ROOT: ${{ inputs.ROOT }}
+        INPUT_CONFIG: ${{ inputs.CONFIG }}
         INPUT_BASE-URL: ${{ inputs.BASE-URL }}
         INPUT_OUTPUT-DIR: ${{ inputs.OUTPUT-DIR }}
         INPUT_DRAFTS: ${{ inputs.DRAFTS }}

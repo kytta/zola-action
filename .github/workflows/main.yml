@@ -41,3 +41,11 @@ jobs:
           base-url: "https://website.invalid"
       - name: Test explicit base URL
         run: grep "https://website.invalid" test/public/robots.txt
+
+      - name: Build with a different config
+        uses: ./
+        with:
+          root: ./test
+          config: "other_config.toml"
+      - name: Test explicit base URL
+        run: grep "https://website.invalid" test/public/robots.txt
