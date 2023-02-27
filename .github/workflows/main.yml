@@ -20,7 +20,6 @@ jobs:
 
       - name: Build explicit output dir
         uses: ./
-        working-directory: ./test
         with:
           root: ./test
           output: ./_site
@@ -29,7 +28,6 @@ jobs:
 
       - name: Build with drafts
         uses: ./
-        working-directory: ./test
         with:
           root: ./test
           drafts: true
@@ -38,7 +36,6 @@ jobs:
 
       - name: Build with explicit base URL
         uses: ./
-        working-directory: ./test
         with:
           root: ./test
           baseUrl: "https://website.invalid"
