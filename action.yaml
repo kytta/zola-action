@@ -40,11 +40,11 @@ runs:
       id: zola
       env:
         # https://github.com/actions/runner/issues/665
-        INPUT_ROOT: ${{ inputs.ROOT }}
-        INPUT_CONFIG: ${{ inputs.CONFIG }}
-        INPUT_BASE-URL: ${{ inputs.BASE-URL }}
-        INPUT_OUTPUT-DIR: ${{ inputs.OUTPUT-DIR }}
-        INPUT_DRAFTS: ${{ inputs.DRAFTS }}
+        INPUT_ROOT: ${{ inputs.root }}
+        INPUT_CONFIG: ${{ inputs.config }}
+        INPUT_BASE_URL: ${{ inputs.base-url }}
+        INPUT_OUTPUT_DIR: ${{ inputs.output-dir }}
+        INPUT_DRAFTS: ${{ inputs.drafts }}
       shell: bash
 branding:
   icon: "zap"
