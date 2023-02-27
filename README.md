@@ -27,6 +27,17 @@ steps:
 `zola-version` is an optional input, but it is highly recommended to pin it
 to become reproducible builds.
 
+### Custom Workflow
+
+This action was made for [publishing with a custom GitHub Actions workflow](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow).
+To use it, you need to build the site, upload the built files as artifacts and
+then deploy those artifacts to the GitHub Pages environment.
+[See my personal website](https://github.com/kytta/www/blob/db05d458d9c0dff99108028c2a7b8cdf239d1300/.github/workflows/deploy.yml)
+as example workflow.
+
+Using this GitHub action (as opposed to shalzz/zola-deploy-action) reduced build
+times from 1m30s to 30s.
+
 ### Inputs
 
 The inputs of the action roughly resemble those of Zola.
