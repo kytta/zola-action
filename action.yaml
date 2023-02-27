@@ -1,6 +1,9 @@
 name: "Build Zola for GitHub Pages"
 description: "A simple GitHub Action for producing Zola build artifacts compatible with GitHub Pages"
 inputs:
+  zola-version:
+    description: "Zola version to use."
+    default: "0.17.1"
   root:
     description: "Directory where the source files reside."
     required: false
@@ -13,20 +16,17 @@ inputs:
     description: "Include drafts when building the site."
     required: false
     default: false
-  baseUrl:
+  base-url:
     description: "Change the base URL of the website."
     required: false
     default: "."
-  zolaVersion:
-    description: "Zola version to use. Almost defaults to the version of the action."
-    default: "0.9.0"
 runs:
   using: "composite"
   steps:
     - name: Install Zola
       run: |
-        curl -sLO 'https://github.com/getzola/zola/releases/download/v${{ inputs.ZOLAVERSION }}/zola-v${{ inputs.ZOLAVERSION }}-x86_64-unknown-linux-gnu.tar.gz'
-        tar -xvzf zola-v${{ inputs.ZOLAVERSION }}-x86_64-unknown-linux-gnu.tar.gz
+        curl -sLO 'https://github.com/getzola/zola/releases/download/v${{ inputs.ZOLA-VERSION }}/zola-v${{ inputs.ZOLA-VERSION }}-x86_64-unknown-linux-gnu.tar.gz'
+        tar -xvzf zola-v${{ inputs.ZOLA-VERSION }}-x86_64-unknown-linux-gnu.tar.gz
         install -t $HOME/.local/bin -D zola
         rm zola
         echo "$HOME/.local/bin" >> $GITHUB_PATH
@@ -39,7 +39,7 @@ runs:
         INPUT_ROOT: ${{ inputs.ROOT }}
         INPUT_OUTPUT: ${{ inputs.OUTPUT }}
         INPUT_DRAFTS: ${{ inputs.DRAFTS }}
-        INPUT_BASEURL: ${{ inputs.BASEURL }}
+        INPUT_BASE-URL: ${{ inputs.BASE-URL }}
       shell: bash
 branding:
   icon: "zap"

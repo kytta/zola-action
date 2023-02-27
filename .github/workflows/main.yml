@@ -38,6 +38,6 @@ jobs:
         uses: ./
         with:
           root: ./test
-          baseUrl: "https://website.invalid"
+          base-url: "https://website.invalid"
       - name: Test explicit base URL
         run: grep "https://website.invalid" test/public/robots.txt

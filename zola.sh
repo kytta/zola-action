@@ -4,8 +4,8 @@ set -euo pipefail
 
 # Check base url
 BASEURL_OPTION=""
-if [ "${INPUT_BASEURL}" != "." ]; then
-    BASEURL_OPTION="--base-url ${INPUT_BASEURL}"
+if [ "${INPUT_BASE-URL}" != "." ]; then
+    BASEURL_OPTION="--base-url ${INPUT_BASE-URL}"
 fi
 
 # Check base url
