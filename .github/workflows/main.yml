@@ -13,7 +13,8 @@ jobs:
 
       - name: Build default
         uses: ./
-        working-directory: ./test
+        with:
+          root: ./test
       - name: Test default
         run: test -e test/public/index.html
 
@@ -21,6 +22,7 @@ jobs:
         uses: ./
         working-directory: ./test
         with:
+          root: ./test
           output: ./_site
       - name: Test explicit output dir
         run: test -e test/_site/index.html
@@ -29,6 +31,7 @@ jobs:
         uses: ./
         working-directory: ./test
         with:
+          root: ./test
           drafts: true
       - name: Test drafts
         run: test -e test/public/blog/one-draft/index.html
@@ -37,6 +40,7 @@ jobs:
         uses: ./
         working-directory: ./test
         with:
+          root: ./test
           baseUrl: "https://website.invalid"
       - name: Test explicit base URL
         run: grep "https://website.invalid" test/public/robots.txt

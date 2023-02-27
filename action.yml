@@ -1,6 +1,10 @@
 name: "Build Zola for GitHub Pages"
 description: "A simple GitHub Action for producing Zola build artifacts compatible with GitHub Pages"
 inputs:
+  root:
+    description: "Directory where the source files reside."
+    required: false
+    default: ./
   output:
     description: "Output directory of the build. It cannot be the same as the source directory."
     required: false
@@ -32,6 +36,7 @@ runs:
       id: zola
       env:
         # https://github.com/actions/runner/issues/665
+        INPUT_ROOT: ${{ inputs.ROOT }}
         INPUT_OUTPUT: ${{ inputs.OUTPUT }}
         INPUT_DRAFTS: ${{ inputs.DRAFTS }}
         INPUT_BASEURL: ${{ inputs.BASEURL }}
