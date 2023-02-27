@@ -3,48 +3,76 @@ on:
   - pull_request
 
 jobs:
-  test-action:
+  test-default:
     runs-on: ubuntu-latest
-    name: Test the Zola build action
+    name: Test default run
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Build default
+      - name: Build
         uses: ./
         with:
           root: ./test
-      - name: Test default
+      - name: Test
         run: test -e public/index.html
 
-      - name: Build explicit output dir
-        uses: ./
-        with:
-          root: ./test
-          output: ./_site
-      - name: Test explicit output dir
-        run: test -e _site/index.html
+  test-config:
+    runs-on: ubuntu-latest
+    name: Test run with 'config'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Build with drafts
-        uses: ./
-        with:
-          root: ./test
-          drafts: true
-      - name: Test drafts
-        run: test -e public/blog/one-draft/index.html
-
-      - name: Build with explicit base URL
-        uses: ./
-        with:
-          root: ./test
-          base-url: "https://website.invalid"
-      - name: Test explicit base URL
-        run: grep "https://website.invalid" public/robots.txt
-
-      - name: Build with a different config
+      - name: Build
         uses: ./
         with:
           root: ./test
           config: "other_config.toml"
-      - name: Test explicit base URL
+      - name: Test
         run: grep "https://website.invalid" public/robots.txt
+
+  test-base-url:
+    runs-on: ubuntu-latest
+    name: Test run with 'base-url'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build
+        uses: ./
+        with:
+          root: ./test
+          base-url: "https://website.invalid"
+      - name: Test
+        run: grep "https://website.invalid" public/robots.txt
+
+  test-output-dir:
+    runs-on: ubuntu-latest
+    name: Test run with 'output-dir'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build
+        uses: ./
+        with:
+          root: ./test
+          output-dir: ./_site
+      - name: Test
+        run: test -e _site/index.html
+
+  test-drafts:
+    runs-on: ubuntu-latest
+    name: Test run with 'drafts'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build
+        uses: ./
+        with:
+          root: ./test
+          drafts: true
+      - name: Test
+        run: test -e public/blog/one-draft/index.html
