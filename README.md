@@ -1,4 +1,4 @@
-# zola-action
+# zola-build-pages
 
 Builds a [Zola] website as an action.
 
@@ -19,7 +19,7 @@ As for now, this action works **only** on `ubuntu-*` runners.
 ```yaml
 steps:
   - uses: actions/checkout@v3
-  - uses: kytta/zola-action@v1
+  - uses: kytta/zola-build-pages@v1
     with:
       zola-version: "0.17.1"
 ```
@@ -48,7 +48,7 @@ Code licensed under the [ISC License].
 ---
 
 This project is hosted on GitHub:
-<https://github.com/kytta/zola-action.git>
+<https://github.com/kytta/zola-build-pages.git>
 
 [isc license]: https://spdx.org/licenses/ISC.html
 [nikita karamov]: https://www.kytta.dev/
