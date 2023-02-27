@@ -16,7 +16,7 @@ jobs:
         with:
           root: ./test
       - name: Test default
-        run: test -e test/public/index.html
+        run: test -e public/index.html
 
       - name: Build explicit output dir
         uses: ./
@@ -24,7 +24,7 @@ jobs:
           root: ./test
           output: ./_site
       - name: Test explicit output dir
-        run: test -e test/_site/index.html
+        run: test -e _site/index.html
 
       - name: Build with drafts
         uses: ./
@@ -32,7 +32,7 @@ jobs:
           root: ./test
           drafts: true
       - name: Test drafts
-        run: test -e test/public/blog/one-draft/index.html
+        run: test -e public/blog/one-draft/index.html
 
       - name: Build with explicit base URL
         uses: ./
@@ -40,7 +40,7 @@ jobs:
           root: ./test
           base-url: "https://website.invalid"
       - name: Test explicit base URL
-        run: grep "https://website.invalid" test/public/robots.txt
+        run: grep "https://website.invalid" public/robots.txt
 
       - name: Build with a different config
         uses: ./
@@ -48,4 +48,4 @@ jobs:
           root: ./test
           config: "other_config.toml"
       - name: Test explicit base URL
-        run: grep "https://website.invalid" test/public/robots.txt
+        run: grep "https://website.invalid" public/robots.txt
