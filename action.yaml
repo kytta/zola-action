@@ -7,19 +7,19 @@ inputs:
   root:
     description: "Directory where the source files reside."
     required: false
-    default: ./
-  output:
-    description: "Output directory of the build. It cannot be the same as the source directory."
+    default: "."
+  base-url:
+    description: "Force the base URL to be that value."
+    required: false
+    default: "<NOTSET>"
+  output-dir:
+    description: "Outputs the generated site in the given path."
     required: false
     default: ./public
   drafts:
     description: "Include drafts when building the site."
     required: false
     default: false
-  base-url:
-    description: "Change the base URL of the website."
-    required: false
-    default: "."
 runs:
   using: "composite"
   steps:
@@ -37,9 +37,9 @@ runs:
       env:
         # https://github.com/actions/runner/issues/665
         INPUT_ROOT: ${{ inputs.ROOT }}
-        INPUT_OUTPUT: ${{ inputs.OUTPUT }}
-        INPUT_DRAFTS: ${{ inputs.DRAFTS }}
         INPUT_BASE-URL: ${{ inputs.BASE-URL }}
+        INPUT_OUTPUT-DIR: ${{ inputs.OUTPUT-DIR }}
+        INPUT_DRAFTS: ${{ inputs.DRAFTS }}
       shell: bash
 branding:
   icon: "zap"

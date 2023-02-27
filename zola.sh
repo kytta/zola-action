@@ -4,15 +4,15 @@ set -euo pipefail
 
 # Check base url
 BASEURL_OPTION=""
-if [ "${INPUT_BASE-URL}" != "." ]; then
+if [ "${INPUT_BASE-URL}" != "<NOTSET>" ]; then
     BASEURL_OPTION="--base-url ${INPUT_BASE-URL}"
 fi
 
 # Check base url
-DRAFTS_FLAG=""
+DRAFTS_OPTION=""
 if [ "${INPUT_DRAFTS}" = true ]; then
-    DRAFTS_FLAG="--drafts"
+    DRAFTS_OPTION="--drafts"
 fi
 
 # Build
-eval zola --root "${INPUT_ROOT}" build "${DRAFTS_FLAG}" "${BASEURL_OPTION}" --output-dir "${INPUT_OUTPUT}"
+eval zola --root "${INPUT_ROOT}" build "${BASEURL_OPTION}" --output-dir "${INPUT_OUTPUT-DIR}" "${DRAFTS_OPTION}"
