@@ -1,0 +1,41 @@
+name: "Build Zola for GitHub Pages"
+description: "A simple GitHub Action for producing Zola build artifacts compatible with GitHub Pages"
+inputs:
+  output:
+    description: "Output directory of the build. It cannot be the same as the source directory."
+    required: false
+    default: ./public
+  drafts:
+    description: "Include drafts when building the site."
+    required: false
+    default: false
+  baseUrl:
+    description: "Change the base URL of the website."
+    required: false
+    default: "."
+  zolaVersion:
+    description: "Zola version to use. Almost defaults to the version of the action."
+    default: "0.9.0"
+runs:
+  using: "composite"
+  steps:
+    - name: Install Zola
+      run: |
+        curl -sLO 'https://github.com/getzola/zola/releases/download/v${{ inputs.ZOLAVERSION }}/zola-v${{ inputs.ZOLAVERSION }}-x86_64-unknown-linux-gnu.tar.gz'
+        tar -xvzf zola-v${{ inputs.ZOLAVERSION }}-x86_64-unknown-linux-gnu.tar.gz
+        install -t $HOME/.local/bin -D zola
+        rm zola
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+      shell: bash
+    - name: Run Zola
+      run: ${{ github.action_path }}/zola.sh
+      id: zola
+      env:
+        # https://github.com/actions/runner/issues/665
+        INPUT_OUTPUT: ${{ inputs.OUTPUT }}
+        INPUT_DRAFTS: ${{ inputs.DRAFTS }}
+        INPUT_BASEURL: ${{ inputs.BASEURL }}
+      shell: bash
+branding:
+  icon: "zap"
+  color: "gray-dark"
