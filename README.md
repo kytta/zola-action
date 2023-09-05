@@ -10,6 +10,13 @@ This action is a [composite action](https://docs.github.com/en/actions/creating-
 As such, it doesn't require building a Dockerfile and is being run directly in
 the runner.
 
+> # This action is unmaintained
+>
+> Alternative: Use [taiki-e/install-action](https://github.com/taiki-e/install-action) to install Zola and run the commands manually.
+
+<details>
+<summary>Old usage instructions</summary>
+
 ## Usage
 
 As for now, this action works **only** on `ubuntu-*` runners.
@@ -50,6 +57,8 @@ The inputs of the action roughly resemble those of Zola.
 | `base-url`     | _from Zola config_ | Force the base URL to be that value.          |
 | `output-dir`   | `./public`         | Outputs the generated site in the given path. |
 | `drafts`       | `false`            | Include drafts when building the site.        |
+
+</details>
 
 ## Licence
 
